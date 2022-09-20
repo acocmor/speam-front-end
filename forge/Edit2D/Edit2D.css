@@ -1,0 +1,50 @@
+.adsk-viewing-viewer .edge-gizmo:hover 
+{  
+    background-color: lime; 
+}
+.adsk-viewing-viewer .edge-gizmo 
+{  
+    position: absolute;
+    background-color: #009bff;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    cursor: move;
+    z-index: 1;
+    /* Place above the viewer but below the measure labels, which are at 2 */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+
+.adsk-viewing-viewer .edge-gizmo.selected {
+    background-color: lime; }
+    
+.adsk-viewing-viewer .vertex-gizmo:hover.vertex-gizmo.enable-hover {
+    border-color: lime; }
+    
+.adsk-viewing-viewer .vertex-gizmo {
+    display: inline-block;
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    left: -2px;
+    top: -2px;
+    background-color: #009bff;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #FFFFFF;
+    border-radius: 100px;
+    box-shadow: 0 2px 5px 0 #182A3D;
+    z-index: 1;
+     /* Place above the viewer but below the measure labels, which are at 2 */
+     cursor: move; 
+    }
+     
+.adsk-viewing-viewer .vertex-gizmo.selected {
+    border-color: lime; 
+}
+    
+.adsk-viewing-viewer .edge-move-gizmo 
+{
+    width: 20px;
+      /* width along the edge */
+    height: 6px;
+     /* height vertical to the edge */ 
+    }
