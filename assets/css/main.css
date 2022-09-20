@@ -1,0 +1,114 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+html, body{
+    min-height: 100%;
+    height: 100%;
+    font-family: 'Roboto Condensed', sans-serif;
+  }
+  
+  .fill{
+    height: calc(100vh - 100px);
+  }
+  
+  body {
+    margin-right: 30px;
+  }
+
+#appBuckets {
+    overflow: auto;
+    width: 100%;
+    height: calc(100vh - 150px);
+  }
+  
+  .adsk-viewing-viewer {width:79%;right:0; z-index: 1;}
+  #forgeViewer {width: 100%; z-index: 1;}
+  
+  .deleteExtensionIcon {
+    background-image: url(../img/trash.png);
+    background-size: 26px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #FFF;
+  }
+
+  .side-bar {
+    z-index: 99;
+  }
+
+  .fill {
+    width: 300px;
+    height: 200px;
+  }
+  
+  .img-help {
+      width: 100%;
+      object-fit: cover;
+  }
+  
+  .title-bold{
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 2rem;
+  }
+  
+  p {
+      line-height: 1.5rem;
+  }
+  
+  #room-all {
+      max-height: calc(100vh - 250px);
+      overflow: scroll;
+  }
+  
+  .file-name {
+      font-size: 1.3rem;
+      font-weight: 500;
+  }
+
+
+
+
+  

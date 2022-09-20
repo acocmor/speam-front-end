@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPEAM - DEMO</title>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/jstree.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/themes/default/style.min.css" />
+
+
+
+    <!-- Autodesk Forge Viewer files -->
+    <!-- <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.39.1/style.min.css" type="text/css">
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.39.1/viewer3D.min.js"></script> -->
+
+    <!-- Only 7.62 or before -->
+    <!-- <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.62/style.min.css" type="text/css">
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.62/viewer3D.min.js"></script> -->
+
+   <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.11/style.min.css" type="text/css">
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.11/viewer3D.js"></script> 
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- this project files -->
+    <link href="assets/css/main.css" rel="stylesheet" />
+    <!-- <script src="assets/js/lmv/wgs.js"></script> -->
+
+    <script src="assets/js/app/common.js"></script>
+
+    <script src="assets/js/ForgeTree.js"></script>
+    <script src="assets/js/ForgeViewer.js"></script>
+ 
+    <script src="assets/js/extensions/Edit2D.min.js"></script> 
+    <script src="assets/js/extensions/Measure.min.js"></script> 
+    <script src="assets/js/extensions/Snapping.min.js"></script> 
+   
+    <script src="assets/js/extensions/CoordinatesTransform.js"></script>
+    <script src="assets/js/extensions/DeleteEntitiesExtension.js"></script>
+    <script src="assets/js/extensions/MyAwesomeExtension.js"></script>
+    <script src="assets/js/extensions/move2d.js"></script>
+
+    <script src="assets/js/app/draw.js"></script>
+    <script src="assets/js/app/Defined.js"></script>
+    <script src="assets/js/app/LoadData.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-light bg-light">
+        <div class="container">
+              <div class="row">
+                <div class="col-4">
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      Files
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <div class="panel panel-default fill">
+                        <div class="panel-heading" data-toggle="tooltip">
+                          Buckets &amp; Objects
+                          <span id="refreshBuckets" class="glyphicon glyphicon-refresh" style="cursor: pointer"></span>                             
+                        </div>
+                        <div id="appBuckets">
+                          tree here
+                        </div>
+                      </div>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                      Rooms
+                    </button>
+                    <div class="dropdown-menu fill" aria-labelledby="dropdownMenuButton2">
+                      <div id="room-all">
+                        Please select file
+                      </div>
+                    </div>
+              
+                  </div>
+                </div>
+                  <div class="col-4">
+                      <!-- Button trigger modal -->
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                          Help ?
+                      </button>
+                  </div>
+                  <div class="col-4">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger" onclick="loadDataRoom()">
+                        Load Data Room
+                    </button>
+                </div>
+                <div class="col-4">
+                  <!-- Button trigger modal -->
+                  
+                <button type="button" class="btn btn-success" onclick="onClickManual()">
+                  Show Rooms
+                </button>
+                </div>
+                <div class="col-4">
+                  <!-- Button trigger modal -->
+                  
+                <button type="button" class="btn btn-warning" onclick="onClickLoadEdit2D()">
+                  Load
+              </button>
+              <button type="button" class="btn btn-warning" onclick="drawC()">
+                Draw C
+            </button>
+            <button type="button" class="btn btn-warning" onclick="drawL()">
+              Draw L
+          </button>
+            <button type="button" class="btn btn-warning" onclick="edit()">
+              Edit
+          </button>
+              </div>
+
+              </div>
+        </div>
+      </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="forgeViewer"></div>
+            </div>
+        </div>
+    </div>
+
+    <form id="uploadFile" method='post' enctype="multipart/form-data">
+        <input id="hiddenUploadField" type="file" name="theFile" style="visibility:hidden" />
+      </form>
+      <!-- Modal Create Bucket -->
+      <div class="modal fade" id="createBucketModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel">Create new bucket</h4>
+            </div>
+            <div class="modal-body">
+              <input type="text" id="newBucketKey" class="form-control"> For demonstration purposes, objects (files)
+              are NOT automatically translated. After you upload, right click on
+              the object and select "Translate". Note: Technically your bucket name is required to be globally unique across
+              the entire platform - to keep things simple with this tutorial your client ID will be prepended by default to
+              your bucket name and in turn masked by the UI so you only have to make sure your bucket name is unique within
+              your current Forge app.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-primary" id="createNewBucket">Go ahead, create the bucket</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Help</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><span class="title-bold">1. Move object</span></p>
+                    <p>- Key press "M" to active the extension "Move object"</p>
+                    <p>- Click on the object to be moved</p>
+                    <img class="img-help" src="./assets/img/help/m-move.png" alt="Move object">
+                    <p>- Move object</p>
+                    <p>- Key press "M" again to deactive</p>
+                    <hr>
+                    <br>
+                    <p><span class="title-bold">2. Delete object</span></p>
+                    <p>- Click on the object to be deleted</p>
+                    <p>- Click on the "Trash" icon on the toolbar</p>
+                    <img class="img-help" src="./assets/img/help/delete.png" alt="Move object">
+                    <hr>
+                    <br>
+                    <p><span class="title-bold">3. Define room</span></p>
+                    <p>- Click on the "Ruler" (Measure tools) icon on the toolbar</p>
+                    <img class="img-help" src="./assets/img/help/select-ruler.png" alt="Move object">
+                    <p>- Click on the "Area tool" on the toolbar</p>
+                    <img class="img-help" src="./assets/img/help/area-tool.png" alt="Move object">
+                    <p>- Define rooms by click points on viewer</p>
+                    <hr>
+                    <br>
+                    <p><span class="title-bold">4. Show room available</span></p>
+                    <p>- Click on the "Ruler" (Measure tools) icon on the toolbar</p>
+                    <p>- Click on the "Room button" on the header</p>
+                    <img class="img-help" src="./assets/img/help/room.png" alt="Move object">
+                    <p>- Select room</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
