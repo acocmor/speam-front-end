@@ -58,7 +58,7 @@
     <nav class="navbar fixed-top navbar-light bg-light">
         <div class="container">
               <div class="row">
-                <div class="col-4">
+                <div class="col-3">
                   <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                       Files
@@ -76,7 +76,8 @@
                     </ul>
                   </div>
                 </div>
-                <div class="col-4">
+
+                <div class="col-3">
                   <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                       Rooms
@@ -89,41 +90,22 @@
               
                   </div>
                 </div>
-                  <div class="col-4">
+
+                  <div class="col-3">
                       <!-- Button trigger modal -->
                       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                           Help ?
                       </button>
                   </div>
-                  <div class="col-4">
+
+                  <div class="col-3">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-danger" onclick="loadDataRoom()">
-                        Load Data Room
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                        Function
                     </button>
                 </div>
-                <div class="col-4">
-                  <!-- Button trigger modal -->
+
                   
-                <button type="button" class="btn btn-success" onclick="onClickManual()">
-                  Show Rooms
-                </button>
-                </div>
-                <div class="col-4">
-                  <!-- Button trigger modal -->
-                  
-                <button type="button" class="btn btn-warning" onclick="onClickLoadEdit2D()">
-                  Load
-              </button>
-              <button type="button" class="btn btn-warning" onclick="drawC()">
-                Draw C
-            </button>
-            <button type="button" class="btn btn-warning" onclick="drawL()">
-              Draw L
-          </button>
-            <button type="button" class="btn btn-warning" onclick="edit()">
-              Edit
-          </button>
-              </div>
 
               </div>
         </div>
@@ -211,5 +193,76 @@
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Function</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                    <div class="col-4">
+                      <!-- Button trigger modal -->
+                      <button type="button" class="btn btn-danger" onclick="loadDataRoom()">
+                                Load Data Room
+                      </button>
+                    </div>
+  
+                    <div class="col-4">
+                        <button type="button" class="btn btn-success" onclick="onClickManual()">
+                          Show Rooms
+                        </button>
+                    </div>
+                  </div>
+
+                      <hr>
+
+                  <div class="row">
+                    <div class="col-3">
+                      <button type="button" class="btn btn-warning" onclick="onClickLoadEdit2D()">
+                        Load
+                      </button>
+                    </div>
+
+                    <div class="col-3">
+                          <button type="button" class="btn btn-warning" onclick="drawC()">
+                            Draw C
+                        </button>
+                    </div>
+
+                    <div class="col-3">
+                        <button type="button" class="btn btn-warning" onclick="edit()">
+                          Edit
+                      </button>
+                    </div>
+
+                    <div class="col-3">
+                      <button type="button" class="btn btn-warning" onclick="postAPI()">
+                        Post API
+                    </button>
+                    </div>
+                  
+
+                  </div>
+
+                  <hr>
+
+                  <div class="row">
+                    
+                    <div class="col-3">
+                      <button type="button" class="btn btn-success" onclick="showResult()">
+                        Show Result
+                    </button> 
+                  </div>
+
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+          </div>
+      </div>
+  </div>
 </body>
 </html>

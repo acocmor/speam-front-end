@@ -6,6 +6,7 @@ let MarkupData = null;
 let LotsGeometry = {};
 let lineCount = 1;
 let selectAll = false;
+let RESULT = [];
 
 
 document.addEventListener("addNewRoom", function(event) { // (1)

@@ -1,0 +1,246 @@
+{
+	"Rooms": [
+		{
+			"GUID": "136ee5da-af93-4d9e-bcfc-7ce4d8407713",
+			"Width": "16.77",
+			"Length": "1.11",
+			"DistanceSmokeAlarmX": 8.39,
+			"DistanceSmokeAlarmY": 1.12,
+			"DistanceWallX": 4.19,
+			"DistanceWallY": 0.56,
+			"Radius": 4.23,
+			"AmountSmokeAlarm": 2
+		},
+		{
+			"GUID": "13114d8e-d7ea-4074-8f84-19885ca116fa",
+			"Width": "4.70",
+			"Length": "4.70",
+			"DistanceSmokeAlarmX": 4.7,
+			"DistanceSmokeAlarmY": 4.7,
+			"DistanceWallX": 2.35,
+			"DistanceWallY": 2.35,
+			"Radius": 3.32,
+			"AmountSmokeAlarm": 1
+		},
+		{
+			"GUID": "ef6f4235-58ef-47d5-b381-dabf3d1dc1c5",
+			"Width": "16.70",
+			"Length": "8.27",
+			"DistanceSmokeAlarmX": 5.57,
+			"DistanceSmokeAlarmY": 8.28,
+			"DistanceWallX": 2.78,
+			"DistanceWallY": 4.14,
+			"Radius": 4.98,
+			"AmountSmokeAlarm": 3
+		},
+		{
+			"GUID": "50157031-5b0c-46a0-ad62-50bc42fae0b6",
+			"Width": "16.94",
+			"Length": "8.16",
+			"DistanceSmokeAlarmX": 5.65,
+			"DistanceSmokeAlarmY": 8.16,
+			"DistanceWallX": 2.82,
+			"DistanceWallY": 4.08,
+			"Radius": 4.96,
+			"AmountSmokeAlarm": 3
+		},
+		{
+			"GUID": "655a31d1-a645-4021-bccf-b27a18f89add",
+			"Width": "16.94",
+			"Length": "8.16",
+			"DistanceSmokeAlarmX": 5.65,
+			"DistanceSmokeAlarmY": 8.16,
+			"DistanceWallX": 2.82,
+			"DistanceWallY": 4.08,
+			"Radius": 4.96,
+			"AmountSmokeAlarm": 3
+		},
+		{
+			"GUID": "215f70f3-04ce-471d-a42e-1abb6b4deae9",
+			"Width": "16.94",
+			"Length": "8.23",
+			"DistanceSmokeAlarmX": 5.65,
+			"DistanceSmokeAlarmY": 8.24,
+			"DistanceWallX": 2.82,
+			"DistanceWallY": 4.12,
+			"Radius": 4.99,
+			"AmountSmokeAlarm": 3
+		},
+		{
+			"GUID": "984e59a5-f2bc-423a-b83d-7f518352e919",
+			"Width": "5.90",
+			"Length": "2.30",
+			"DistanceSmokeAlarmX": 5.9,
+			"DistanceSmokeAlarmY": 2.3,
+			"DistanceWallX": 2.95,
+			"DistanceWallY": 1.15,
+			"Radius": 3.17,
+			"AmountSmokeAlarm": 1
+		},
+		{
+			"GUID": "86fe3805-7143-4032-b498-906534418500",
+			"Width": "4.63",
+			"Length": "2.16",
+			"DistanceSmokeAlarmX": 4.63,
+			"DistanceSmokeAlarmY": 2.16,
+			"DistanceWallX": 2.32,
+			"DistanceWallY": 1.08,
+			"Radius": 2.55,
+			"AmountSmokeAlarm": 1
+		},
+		{
+			"GUID": "598b4c11-714b-43f3-b703-1d2ba45552b5",
+			"Width": "4.63",
+			"Length": "2.16",
+			"DistanceSmokeAlarmX": 4.63,
+			"DistanceSmokeAlarmY": 2.16,
+			"DistanceWallX": 2.32,
+			"DistanceWallY": 1.08,
+			"Radius": 2.55,
+			"AmountSmokeAlarm": 1
+		},
+		{
+			"GUID": "416757b6-59c9-466a-8f47-68dfcb75b4c2",
+			"Width": "3.50",
+			"Length": "6.96",
+			"DistanceSmokeAlarmX": 3.5,
+			"DistanceSmokeAlarmY": 6.96,
+			"DistanceWallX": 1.75,
+			"DistanceWallY": 3.48,
+			"Radius": 3.9,
+			"AmountSmokeAlarm": 1
+		},
+		{
+			"GUID": "fed63c42-0d82-4e23-96c0-91299e3fdaef",
+			"Width": "3.22",
+			"Length": "32.37",
+			"DistanceSmokeAlarmX": 3.22,
+			"DistanceSmokeAlarmY": 8.09,
+			"DistanceWallX": 1.61,
+			"DistanceWallY": 4.05,
+			"Radius": 4.35,
+			"AmountSmokeAlarm": 4
+		},
+		{
+			"GUID": "abfcf36e-9c07-4f02-9779-1d22e95aafcd",
+			"Width": "12.14",
+			"Length": "11.83",
+			"DistanceSmokeAlarmX": 6.07,
+			"DistanceSmokeAlarmY": 5.92,
+			"DistanceWallX": 3.04,
+			"DistanceWallY": 2.96,
+			"Radius": 4.24,
+			"AmountSmokeAlarm": 4
+		},
+		{
+			"GUID": "eeb29a74-604e-45df-b0d5-3c00c9bedb3c",
+			"Width": "0.31",
+			"Length": "5.04",
+			"DistanceSmokeAlarmX": 0.32,
+			"DistanceSmokeAlarmY": 5.04,
+			"DistanceWallX": 0.16,
+			"DistanceWallY": 2.52,
+			"Radius": 2.52,
+			"AmountSmokeAlarm": 1
+		},
+		{
+			"GUID": "d1495f37-204b-48f7-a9fd-dc208bf12649",
+			"Width": "12.14",
+			"Length": "11.76",
+			"DistanceSmokeAlarmX": 6.07,
+			"DistanceSmokeAlarmY": 5.88,
+			"DistanceWallX": 3.04,
+			"DistanceWallY": 2.94,
+			"Radius": 4.23,
+			"AmountSmokeAlarm": 4
+		},
+		{
+			"GUID": "d79d8978-2063-4f40-85b0-cf8a9214f855",
+			"Width": "12.14",
+			"Length": "9.43",
+			"DistanceSmokeAlarmX": 6.07,
+			"DistanceSmokeAlarmY": 9.44,
+			"DistanceWallX": 3.04,
+			"DistanceWallY": 4.72,
+			"Radius": 5.61,
+			"AmountSmokeAlarm": 2
+		},
+		{
+			"GUID": "d5188f65-6e75-4d21-98bc-3e37d5f14f9c",
+			"Width": "11.97",
+			"Length": "1.10",
+			"DistanceSmokeAlarmX": 11.97,
+			"DistanceSmokeAlarmY": 1.1,
+			"DistanceWallX": 5.99,
+			"DistanceWallY": 0.55,
+			"Radius": 6.01,
+			"AmountSmokeAlarm": 1
+		},
+		{
+			"GUID": "23cc38f0-a4fe-4587-aa5f-0dcad0401806",
+			"Width": "3.36",
+			"Length": "6.96",
+			"DistanceSmokeAlarmX": 3.36,
+			"DistanceSmokeAlarmY": 6.96,
+			"DistanceWallX": 1.68,
+			"DistanceWallY": 3.48,
+			"Radius": 3.86,
+			"AmountSmokeAlarm": 1
+		},
+		{
+			"GUID": "cc18f50a-d784-4fab-89d3-641377a585d9",
+			"Width": "2.23",
+			"Length": "4.56",
+			"DistanceSmokeAlarmX": 2.24,
+			"DistanceSmokeAlarmY": 4.56,
+			"DistanceWallX": 1.12,
+			"DistanceWallY": 2.28,
+			"Radius": 2.54,
+			"AmountSmokeAlarm": 1
+		},
+		{
+			"GUID": "f9082f5b-1cc9-4c39-9d7c-b70b92f6fd81",
+			"Width": "2.23",
+			"Length": "2.16",
+			"DistanceSmokeAlarmX": 2.23,
+			"DistanceSmokeAlarmY": 2.16,
+			"DistanceWallX": 1.12,
+			"DistanceWallY": 1.08,
+			"Radius": 1.55,
+			"AmountSmokeAlarm": 1
+		},
+		{
+			"GUID": "38cc32c4-b616-4a75-9528-9ea6b9dd7ca0",
+			"Width": "4.70",
+			"Length": "7.08",
+			"DistanceSmokeAlarmX": 4.7,
+			"DistanceSmokeAlarmY": 7.08,
+			"DistanceWallX": 2.35,
+			"DistanceWallY": 3.54,
+			"Radius": 4.25,
+			"AmountSmokeAlarm": 1
+		},
+		{
+			"GUID": "00e16f23-02c3-447d-b47f-f66f0542e36e",
+			"Width": "2.30",
+			"Length": "2.30",
+			"DistanceSmokeAlarmX": 2.3,
+			"DistanceSmokeAlarmY": 2.3,
+			"DistanceWallX": 1.15,
+			"DistanceWallY": 1.15,
+			"Radius": 1.63,
+			"AmountSmokeAlarm": 1
+		},
+		{
+			"GUID": "78defc64-cfd4-4e1f-beff-0fc3f8e91d21",
+			"Width": "3.50",
+			"Length": "7.08",
+			"DistanceSmokeAlarmX": 3.5,
+			"DistanceSmokeAlarmY": 7.08,
+			"DistanceWallX": 1.75,
+			"DistanceWallY": 3.54,
+			"Radius": 3.95,
+			"AmountSmokeAlarm": 1
+		}
+	]
+}
