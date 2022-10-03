@@ -122,20 +122,47 @@ function loadDataRoom() {
         // });  
 
         data.map(dataRoom => {
+
+            const point1 = dataRoom?.BoxPoints[0];
+            const point2 = dataRoom?.BoxPoints[1];
+            const point3 = dataRoom?.BoxPoints[2];
+
+            const width = getLength(point1, point2, dataRoom?.Scale);
+            const height = getLength(point2, point3, dataRoom?.Scale);
+
             var newRooms = dataRoom?.BoxPoints.map((point, index) => dataRoom.BoxPoints[index] = mapCoordinates(point))
             var newArr = dataRoom?.BoxPoints
 
             newArr.push(dataRoom?.BoxPoints[0])
 
+         
+
             // var newArr = uniqBy(newRooms, JSON.stringify)
             rooms.push({
                 RoomId: dataRoom?.RoomId,
                 BoxPoints: newArr,
+                Width: width,
+                Height: height,
             })
             console.log(rooms)
         });  
 
+
+        
     });
+}
+
+function getLength(point1, point2, scale) {
+    if (scale === null || scale === undefined || scale === 0) scale = 1;
+    const vec1 = new THREE.Vector3().set(point1.X, point1.Y, 0)
+    const vec2 = new THREE.Vector3().set(point2.X, point2.Y, 0)
+    const length = vec1.distanceTo(vec2);
+    const units = viewer.model.getDisplayUnit();
+    if (units === 'm') {
+        
+    }
+    return (length / scale).toFixed(2);;
+
 }
 
 function uniqBy(a, key) {
@@ -224,6 +251,7 @@ window.tools  = edit2d.defaultTools;
 }
 
 function drawC() {
+
     // var tool2 = window.tools.insertSymbolTool;
     // startTool(tool2)
     // var tool = window.tools.polygonTool;
@@ -246,18 +274,44 @@ function drawC() {
 }
 
 function drawL() {
-    // var tool2 = window.tools.insertSymbolTool;
-    // startTool(tool2)
-    // var tool = window.tools.polygonTool;
-    var tool = window.tools.insertSymbolTool;
-    let line = new Autodesk.Edit2D.Polyline().makeLine(-1, -1, 1, 1);
-    // var circle = new Autodesk.Edit2D.Circle();
-    tool.symbol=line;
-    // startTool(tool)
 
-    console.log(tool)
-    tool.handleAutoDraw({x: 5, y: 5})
-    // tool.handleSingleClick({canvasX: 500, canvasY: 500})
+    var dataRoom = rooms.map(room => ({GUID: room.RoomId, Width: room.Width, Length: room.Height}));
+
+    console.log(dataRoom)
+
+    var data =  JSON.stringify({
+        "Rooms": dataRoom
+    });
+
+    $.ajax({
+        type:   "POST",
+        url:    "https://api.kft-edv.de/graebert/request",
+        data:   data,
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-type': 'application/json', 
+            'Authorization':'Basic 715a8dae-0e69-4aad-b7d4-d767c2890204', 
+        },
+        success: function (response) {
+            console.log(response)
+        },
+        error: function (error) {
+            console.log ("ERROR:", error);
+        }
+    });
+
+    // // var tool2 = window.tools.insertSymbolTool;
+    // // startTool(tool2)
+    // // var tool = window.tools.polygonTool;
+    // var tool = window.tools.insertSymbolTool;
+    // let line = new Autodesk.Edit2D.Polyline().makeLine(-1, -1, 1, 1);
+    // // var circle = new Autodesk.Edit2D.Circle();
+    // tool.symbol=line;
+    // // startTool(tool)
+
+    // console.log(tool)
+    // tool.handleAutoDraw({x: 5, y: 5})
+    // // tool.handleSingleClick({canvasX: 500, canvasY: 500})
 }
 
 function edit() {
