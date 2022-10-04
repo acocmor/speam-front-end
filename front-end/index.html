@@ -24,7 +24,7 @@
     <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.62/viewer3D.min.js"></script> -->
 
    <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.11/style.min.css" type="text/css">
-    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.11/viewer3D.js"></script> 
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.11/viewer3D.min.js"></script> 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -209,6 +209,12 @@
                                 Load Data Room
                       </button>
                     </div>
+
+                    <div class="col-4">
+                      <button type="button" class="btn btn-success" onclick="showOriginalRoom()">
+                        Show Original Rooms
+                      </button>
+                  </div>
   
                     <div class="col-4">
                         <button type="button" class="btn btn-success" onclick="onClickManual()">
@@ -222,19 +228,19 @@
                   <div class="row">
                     <div class="col-3">
                       <button type="button" class="btn btn-warning" onclick="onClickLoadEdit2D()">
-                        Load
+                        Load Tool Draw
                       </button>
                     </div>
 
                     <div class="col-3">
                           <button type="button" class="btn btn-warning" onclick="drawC()">
-                            Draw C
+                            Test Draw Circle
                         </button>
                     </div>
 
                     <div class="col-3">
                         <button type="button" class="btn btn-warning" onclick="edit()">
-                          Edit
+                          Move Device
                       </button>
                     </div>
 

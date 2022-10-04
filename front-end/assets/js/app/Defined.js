@@ -107,6 +107,15 @@ function onClickManual() {
     })
 }
 
+function showOriginalRoom() {
+    rooms.map((room, index) => {
+        room.MarkupID = index;
+        room?.CurrentPoints.map(point => {
+            viewer.dispatchEvent(new CustomEvent('clickManual', {'detail': {startManual: true, isManual: true, MarkupID: index, x: point.x, y: point.y}}));
+        })
+    })
+}
+
 function loadDataRoom() {
     fetch(`../../../data/rooms3.json`).then(r => r.json()).then( data=> {
         rooms = [];
@@ -121,6 +130,7 @@ function loadDataRoom() {
             const height = getLength({x: minX, y: minY}, {x: minX, y: maxY}, dataRoom?.Scale);
 
             const newArr = dataRoom?.BoxPoints.map((point, index) => dataRoom.BoxPoints[index] = mapCoordinates(point))
+            const newArrOriginal = dataRoom?.CurrentPoints.map((point, index) => dataRoom.CurrentPoints[index] = mapCoordinates(point))
 
              // Lấy toạ độ max, min Layer CAD
             minX = Math.min.apply(Math, dataRoom?.BoxPoints.map(function(o) { return o.x; }));
@@ -138,6 +148,7 @@ function loadDataRoom() {
             rooms.push({
                 RoomId: dataRoom?.RoomId,
                 BoxPoints: newArr,
+                CurrentPoints: newArrOriginal,
                 Width: width,
                 WidthLayer: widthLayer,
                 Height: height,
@@ -323,47 +334,69 @@ function postAPI() {
 
 function showResult() {
     RESULT.map((coord, index) => {
-        const leftMostDevice = [];
-        const downMostDevice = [];
         const addedDevice = [];
-
         var room = rooms[index]
         for(i = 0; i < coord.AmountSmokeAlarm; i++) {
-            
             if (i == 0) {
                 const firstDevice = {
                     x: room.MinX + coord.DistanceWallXLayer,
                     y: room.MinY + coord.DistanceWallYLayer,
+                    isRight: true
                 }
                 drawC(firstDevice, coord.RadiusLayer)
-                addedDevice.push(firstDevice)
+                addedDevice.push(firstDevice);
             } else {
                 const beforeCoord = addedDevice[i - 1];
                 if (beforeCoord) {
                     // LOGIC check
-                    const checkWidthRoom = beforeCoord.x + coord.DistanceSmokeAlarmXLayer + coord.RadiusLayer - room.WidthLayer;
-                    if (checkWidthRoom) {
-                        const nextDevice = {
-                            x: beforeCoord.x + coord.DistanceSmokeAlarmXLayer,
-                            y: beforeCoord.y,
-                        }
-                        drawC(nextDevice, coord.RadiusLayer)
-                        addedDevice.push(nextDevice)
-                    } else {
-                        console.log('check ----------------')
-                        const checkLengthRoom = beforeCoord.y + coord.DistanceSmokeAlarmYLayer + coord.RadiusLayer - 0.1 - room.LengthLayer < 0;
-                        if (checkLengthRoom) {
+                    if (beforeCoord.isRight) {
+                        const checkWidthRoom = beforeCoord.x + coord.DistanceSmokeAlarmXLayer;
+                        if (checkWidthRoom  < room.MaxX){
                             const nextDevice = {
-                                x: beforeCoord.x,
-                                y: beforeCoord.y  + coord.DistanceSmokeAlarmYLayer,
+                                x: checkWidthRoom,
+                                y: beforeCoord.y,
+                                isRight: true
                             }
                             drawC(nextDevice, coord.RadiusLayer)
                             addedDevice.push(nextDevice)
+                        } else {
+                            const checkLengthRoom = beforeCoord.y + coord.DistanceSmokeAlarmYLayer;
+                            if (checkLengthRoom  < room.MaxY) {
+                                const nextDevice = {
+                                    x: beforeCoord.x,
+                                    y: checkLengthRoom,
+                                    isRight: false
+                                }
+                                drawC(nextDevice, coord.RadiusLayer)
+                                addedDevice.push(nextDevice)
+                            }
+                        }
+                    } else {
+                        const checkWidthRoom = beforeCoord.x - coord.DistanceSmokeAlarmXLayer;
+                        if (checkWidthRoom > room.MinX){
+                            const nextDevice = {
+                                x: checkWidthRoom,
+                                y: beforeCoord.y,
+                                isRight: false
+                            }
+                            drawC(nextDevice, coord.RadiusLayer)
+                            addedDevice.push(nextDevice)
+                        } else {
+                            const checkLengthRoom = beforeCoord.y + coord.DistanceSmokeAlarmYLayer;
+                            if (checkLengthRoom  < room.MaxY) {
+                                const nextDevice = {
+                                    x: beforeCoord.x,
+                                    y: checkLengthRoom,
+                                    isRight: true
+                                }
+                                drawC(nextDevice, coord.RadiusLayer)
+                                addedDevice.push(nextDevice)
+                            }
                         }
                     }
                 }
-                
             }
+
         }
     })
 }
