@@ -51,7 +51,7 @@ function onDocumentLoadFailure(viewerErrorCode) {
 }
 
 function getForgeToken(callback) {
-  fetch(`${DBURL}/api/forge/oauth/token`).then(res => {
+  fetch(`${URL_BASE}/api/forge/oauth/token`).then(res => {
     res.json().then(data => {
       callback(data.dictionary.access_token, data.dictionary.expires_in);
     });

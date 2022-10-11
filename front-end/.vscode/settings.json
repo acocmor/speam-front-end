@@ -1,9 +1,9 @@
 {
-    "liveServer.settings.port": 5501,
+    "liveServer.settings.port": 5500,
     "liveServer.settings.root": "/",
     "liveServer.settings.CustomBrowser": "chrome",
     "liveServer.settings.https": {
-        "enable": true,
+        "enable": false,
         "cert": "D:\\Projects\\HarmonyAT\\Speam\\TEMP\\speam-front-end\\front-end\\https\\localhost.pem",
         "key": "D:\\Projects\\HarmonyAT\\Speam\\TEMP\\speam-front-end\\front-end\\https\\localhost.key",
         "passphrase": "201200",

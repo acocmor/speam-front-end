@@ -23,6 +23,16 @@ public class OSSController : ControllerBase
     {
         return await _ossService.GetOSSAsync(id);
     }
+    
+    /// <summary>
+    /// Return list of buckets (id=#) or list of objects (id=bucketKey)
+    /// </summary>
+    [HttpGet]
+    [Route("api/forge/oss/buckets/all")]
+    public async Task<IList<TreeNode>> GetAllOSSAsync()
+    {
+        return await _ossService.GetOSSAsync("#");
+    }
 
         
     /// <summary>

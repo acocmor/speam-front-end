@@ -42,7 +42,7 @@ $(document).ready(function () {
           formData.append('bucketKey', node.id);
   
           $.ajax({
-            url: `${DBURL}/api/forge/oss/objects`,
+            url: `${URL_BASE}/api/forge/oss/objects`,
             data: formData,
             processData: false,
             contentType: false,
@@ -61,7 +61,7 @@ $(document).ready(function () {
     var bucketKey = $('#newBucketKey').val();
     var policyKey = $('#newBucketPolicyKey').val();
     jQuery.post({
-      url: `${DBURL}/api/forge/oss/buckets`,
+      url: `${URL_BASE}/api/forge/oss/buckets`,
       contentType: 'application/json',
       data: JSON.stringify({ 'bucketKey': bucketKey, 'policyKey': policyKey }),
       success: function (res) {
@@ -81,7 +81,7 @@ $(document).ready(function () {
       'core': {
         'themes': { "icons": true },
         'data': {
-          "url": `${DBURL}/api/forge/oss/buckets`,
+          "url": `${URL_BASE}/api/forge/oss/buckets`,
           "dataType": "json",
           'multiple': false,
           "data": function (node) {
@@ -177,7 +177,7 @@ $(document).ready(function () {
     var bucketKey = node.parents[0];
     var objectKey = node.id;
     jQuery.post({
-      url: `${DBURL}/api/forge/modelderivative/jobs`,
+      url: `${URL_BASE}/api/forge/modelderivative/jobs`,
       contentType: 'application/json',
       data: JSON.stringify({ 'bucketKey': bucketKey, 'objectName': objectKey }),
       success: function (res) {

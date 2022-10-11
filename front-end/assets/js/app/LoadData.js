@@ -1,6 +1,6 @@
 function loadData(fileName) {
     selectAll = false;
-    fetch(`../../../data/${fileName}.json`).then(r => r.json()).then( data=> {
+    fetch(`${URL_BASE}/data/${fileName}.json`).then(r => r.json()).then( data=> {
         Items = data;
         Items.forEach(i => i.json=JSON.parse(i.json));
 

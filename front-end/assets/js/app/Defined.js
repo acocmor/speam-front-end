@@ -132,7 +132,7 @@ function loadDataRoom() {
             const newArr = dataRoom?.BoxPoints.map((point, index) => dataRoom.BoxPoints[index] = mapCoordinates(point))
             const newArrOriginal = dataRoom?.CurrentPoints.map((point, index) => dataRoom.CurrentPoints[index] = mapCoordinates(point))
 
-             // Lấy toạ độ max, min Layer CAD
+             // Lấy toạ độ max, min Layer Viewer
             minX = Math.min.apply(Math, dataRoom?.BoxPoints.map(function(o) { return o.x; }));
             minY = Math.min.apply(Math, dataRoom?.BoxPoints.map(function(o) { return o.y; }));
             maxX = Math.max.apply(Math, dataRoom?.BoxPoints.map(function(o) { return o.x; })); 
@@ -213,7 +213,8 @@ function loadDevice() {
 
 
 async function onClickLoadEdit2D() {
-    // Load Edit2D extension
+    try {
+        // Load Edit2D extension
     const options = {
         // If true, PolygonTool will create Paths instead of just Polygons. This allows to change segments to arcs.
         enableArcs: true
@@ -264,6 +265,69 @@ async function onClickLoadEdit2D() {
     // layer.addShape(shape2);
 
     // console.log('okokokokokokoko')
+
+        return true;
+    } catch (err) {
+        console.error(err)
+        return false;
+    }
+}
+
+async function drawSVG() {
+    const isLoadTool = await onClickLoadEdit2D();
+    if (!isLoadTool) return;
+
+    var tool = window.tools.insertSymbolTool;
+
+    const svgString = '<path id="inner-path" class="st1" d="M16,10c-3.3,0-6,2.7-6,6s2.7,6,6,6s6-2.7,6-6S19.3,10,16,10z"/>';
+    const shape2    = Autodesk.Edit2D.Shape.fromSVG(svgString);
+
+    shape2.points.push({x:5, y:5})
+    shape2.points.push({x:5, y:6})
+
+    tool.symbol=shape2;
+    tool.handleSingleClick({canvasX: 500, canvasY: 500})
+
+
+
+    console.log('shape2: ', shape2)
+
+    // var tool = window.tools.insertSymbolTool;
+    // tool.symbol=shape2;
+    // tool.handleSingleClick({canvasX: 500, canvasY: 500})
+
+    // fetch(`../../../data/alarm-device.svg`).then(response => {
+    //     console.log('response', response);
+    //     return response.text();
+    // }).then(data=> {
+    //     const svgString = data;
+    //     console.log(svgString)
+
+    //     var tool = window.tools.insertSymbolTool;
+    //     const shape2 = Autodesk.Edit2D.Shape.fromSVG(svgString);
+    //     tool.symbol=shape2;
+    //     tool.handleSingleClick({canvasX: 500, canvasY: 500})
+    //     // console.log(tool)
+    // });
+
+    // const markupExt = this.viewer.getExtension('Autodesk.Viewing.MarkupsCore');
+    // markupExt.show();
+    // markupExt.enterEditMode();
+    // markupExt.changeEditMode(new EditModeStamp(markupExt, customSVG));
+
+    // const svgString = `
+    // <svg version="1.1" id="icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    //      width="32px" height="32px" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
+    // <style type="text/css">
+    //     .st0{fill:none;}
+    //     .st1{opacity:0;}
+    // </style>
+    // <rect id="_Transparent_Rectangle_" class="st0" width="32" height="32"/>
+    // <path d="M16,2C8.3,2,2,8.3,2,16s6.3,14,14,14s14-6.3,14-14S23.7,2,16,2z M16,22c-3.3,0-6-2.7-6-6s2.7-6,6-6s6,2.7,6,6S19.3,22,16,22
+    //     z"/>
+    // <path id="inner-path" class="st1" d="M16,10c-3.3,0-6,2.7-6,6s2.7,6,6,6s6-2.7,6-6S19.3,10,16,10z"/>
+    // </svg>
+    // `
 }
 
 function drawC(position, radius) {
@@ -290,6 +354,7 @@ function drawC(position, radius) {
 }
 
 function postAPI() {
+    $('#btn-show-result').attr('disabled', 'disabled')
     // var dataRoom = rooms.map(room => ({GUID: room.RoomId, Width: room.Width, Length: room.Height}));
 
     // var data =  JSON.stringify({
@@ -313,6 +378,7 @@ function postAPI() {
     //     success: function (response) {
     //         console.log('Get data OK!')
     //         console.log(response)
+    //         $('#btn-show-result').removeAttr('disabled')
     //     },
     //     error: function (error) {
     //         console.log ("ERROR:", error);
@@ -328,77 +394,82 @@ function postAPI() {
             value.RadiusLayer = getLengthFromAPI(value.Radius, scale);
             return {...value}
         })
-        console.log(RESULT) 
+        console.log(RESULT)
+        $('#btn-show-result').removeAttr('disabled')
     });
 }
 
-function showResult() {
-    RESULT.map((coord, index) => {
-        const addedDevice = [];
-        var room = rooms[index]
-        for(i = 0; i < coord.AmountSmokeAlarm; i++) {
-            if (i == 0) {
-                const firstDevice = {
-                    x: room.MinX + coord.DistanceWallXLayer,
-                    y: room.MinY + coord.DistanceWallYLayer,
-                    isRight: true
-                }
-                drawC(firstDevice, coord.RadiusLayer)
-                addedDevice.push(firstDevice);
-            } else {
-                const beforeCoord = addedDevice[i - 1];
-                if (beforeCoord) {
-                    // LOGIC check
-                    if (beforeCoord.isRight) {
-                        const checkWidthRoom = beforeCoord.x + coord.DistanceSmokeAlarmXLayer;
-                        if (checkWidthRoom  < room.MaxX){
-                            const nextDevice = {
-                                x: checkWidthRoom,
-                                y: beforeCoord.y,
-                                isRight: true
-                            }
-                            drawC(nextDevice, coord.RadiusLayer)
-                            addedDevice.push(nextDevice)
-                        } else {
-                            const checkLengthRoom = beforeCoord.y + coord.DistanceSmokeAlarmYLayer;
-                            if (checkLengthRoom  < room.MaxY) {
+async function showResult() {
+
+    const isActive = await onClickLoadEdit2D();
+
+    if (isActive) {
+        RESULT.map((coord, index) => {
+            const addedDevice = [];
+            var room = rooms[index]
+            for(i = 0; i < coord.AmountSmokeAlarm; i++) {
+                if (i == 0) {
+                    const firstDevice = {
+                        x: room.MinX + coord.DistanceWallXLayer,
+                        y: room.MinY + coord.DistanceWallYLayer,
+                        isRight: true
+                    }
+                    drawC(firstDevice, coord.RadiusLayer)
+                    addedDevice.push(firstDevice);
+                } else {
+                    const beforeCoord = addedDevice[i - 1];
+                    if (beforeCoord) {
+                        // LOGIC check
+                        if (beforeCoord.isRight) {
+                            const checkWidthRoom = beforeCoord.x + coord.DistanceSmokeAlarmXLayer;
+                            if (checkWidthRoom  < room.MaxX){
                                 const nextDevice = {
-                                    x: beforeCoord.x,
-                                    y: checkLengthRoom,
-                                    isRight: false
-                                }
-                                drawC(nextDevice, coord.RadiusLayer)
-                                addedDevice.push(nextDevice)
-                            }
-                        }
-                    } else {
-                        const checkWidthRoom = beforeCoord.x - coord.DistanceSmokeAlarmXLayer;
-                        if (checkWidthRoom > room.MinX){
-                            const nextDevice = {
-                                x: checkWidthRoom,
-                                y: beforeCoord.y,
-                                isRight: false
-                            }
-                            drawC(nextDevice, coord.RadiusLayer)
-                            addedDevice.push(nextDevice)
-                        } else {
-                            const checkLengthRoom = beforeCoord.y + coord.DistanceSmokeAlarmYLayer;
-                            if (checkLengthRoom  < room.MaxY) {
-                                const nextDevice = {
-                                    x: beforeCoord.x,
-                                    y: checkLengthRoom,
+                                    x: checkWidthRoom,
+                                    y: beforeCoord.y,
                                     isRight: true
                                 }
                                 drawC(nextDevice, coord.RadiusLayer)
                                 addedDevice.push(nextDevice)
+                            } else {
+                                const checkLengthRoom = beforeCoord.y + coord.DistanceSmokeAlarmYLayer;
+                                if (checkLengthRoom  < room.MaxY) {
+                                    const nextDevice = {
+                                        x: beforeCoord.x,
+                                        y: checkLengthRoom,
+                                        isRight: false
+                                    }
+                                    drawC(nextDevice, coord.RadiusLayer)
+                                    addedDevice.push(nextDevice)
+                                }
+                            }
+                        } else {
+                            const checkWidthRoom = beforeCoord.x - coord.DistanceSmokeAlarmXLayer;
+                            if (checkWidthRoom > room.MinX){
+                                const nextDevice = {
+                                    x: checkWidthRoom,
+                                    y: beforeCoord.y,
+                                    isRight: false
+                                }
+                                drawC(nextDevice, coord.RadiusLayer)
+                                addedDevice.push(nextDevice)
+                            } else {
+                                const checkLengthRoom = beforeCoord.y + coord.DistanceSmokeAlarmYLayer;
+                                if (checkLengthRoom  < room.MaxY) {
+                                    const nextDevice = {
+                                        x: beforeCoord.x,
+                                        y: checkLengthRoom,
+                                        isRight: true
+                                    }
+                                    drawC(nextDevice, coord.RadiusLayer)
+                                    addedDevice.push(nextDevice)
+                                }
                             }
                         }
                     }
                 }
             }
-
-        }
-    })
+        })
+    }
 }
 
 function edit() {

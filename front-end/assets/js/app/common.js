@@ -1,5 +1,5 @@
 
-let DBURL = 'http://localhost:5000'
+let URL_BASE = 'http://localhost:5000'
 let Items = [];
 let rooms = [];
 let MarkupData = null;

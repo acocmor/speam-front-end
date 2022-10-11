@@ -1124,7 +1124,7 @@
                 }
                 case 83: { // key 'S' to save to DB
                     // SAVE MARKUP
-                    fetch(`${DBURL}/savemarkup`, {
+                    fetch(`${URL_BASE}/savemarkup`, {
                         method: 'post',
                         headers: {
                             'Accept': 'application/json, text/plain, */*',

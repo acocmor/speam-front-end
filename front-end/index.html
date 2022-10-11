@@ -13,26 +13,15 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/jstree.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/themes/default/style.min.css" />
 
-
-
-    <!-- Autodesk Forge Viewer files -->
-    <!-- <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.39.1/style.min.css" type="text/css">
-    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.39.1/viewer3D.min.js"></script> -->
-
-    <!-- Only 7.62 or before -->
-    <!-- <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.62/style.min.css" type="text/css">
-    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.62/viewer3D.min.js"></script> -->
-
-   <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.11/style.min.css" type="text/css">
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.11/style.min.css" type="text/css">
     <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.11/viewer3D.min.js"></script> 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
 
     <!-- this project files -->
     <link href="assets/css/main.css" rel="stylesheet" />
-    <!-- <script src="assets/js/lmv/wgs.js"></script> -->
 
     <script src="assets/js/app/common.js"></script>
 
@@ -48,7 +37,6 @@
     <script src="assets/js/extensions/MyAwesomeExtension.js"></script>
     <script src="assets/js/extensions/move2d.js"></script>
 
-    <script src="assets/js/app/draw.js"></script>
     <script src="assets/js/app/Defined.js"></script>
     <script src="assets/js/app/LoadData.js"></script>
     <script src="assets/js/main.js"></script>
@@ -206,7 +194,7 @@
                     <div class="col-4">
                       <!-- Button trigger modal -->
                       <button type="button" class="btn btn-danger" onclick="loadDataRoom()">
-                                Load Data Room
+                        Load Data Room
                       </button>
                     </div>
 
@@ -226,39 +214,35 @@
                       <hr>
 
                   <div class="row">
-                    <div class="col-3">
-                      <button type="button" class="btn btn-warning" onclick="onClickLoadEdit2D()">
-                        Load Tool Draw
+                   <div class="col-3">
+                      <button type="button" class="btn btn-warning" onclick="drawSVG()">
+                       Show SVG
                       </button>
                     </div>
 
-                    <div class="col-3">
+                    <!-- <div class="col-3">
                           <button type="button" class="btn btn-warning" onclick="drawC()">
                             Test Draw Circle
                         </button>
-                    </div>
+                    </div>  -->
 
                     <div class="col-3">
                         <button type="button" class="btn btn-warning" onclick="edit()">
                           Move Device
                       </button>
                     </div>
-
-                    <div class="col-3">
-                      <button type="button" class="btn btn-warning" onclick="postAPI()">
-                        Post API
-                    </button>
-                    </div>
-                  
-
                   </div>
 
                   <hr>
 
                   <div class="row">
-                    
                     <div class="col-3">
-                      <button type="button" class="btn btn-success" onclick="showResult()">
+                      <button type="button" class="btn btn-danger" onclick="postAPI()">
+                        Post API
+                    </button>
+                    </div>
+                    <div class="col-3">
+                      <button type="button" class="btn btn-success" id="btn-show-result" onclick="showResult()" disabled>
                         Show Result
                     </button> 
                   </div>
