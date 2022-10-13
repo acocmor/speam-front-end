@@ -4,15 +4,52 @@ import classNames from 'classnames/bind';
 
 import styles from './Home.module.scss';
 import AppTreeView from '~/components/AppTreeView';
+import AppViewer from '~/components/AppViewer';
 import api from '~/api';
+import axios from 'axios';
 
 const cx = classNames.bind(styles);
 const { Header, Content, Footer } = Layout;
 
 export default function Home() {
-    const [value, setValue] = useState();
+    const [bucketObject, setBucketObject] = useState({});
+    const [token, setToken] = useState(null);
+    const [urn, setUrn] = useState(null);
+    const [resetViewer, setResetViewer] = useState(null);
 
-    useEffect(() => {}, []);
+    useEffect(() => {
+        api.get('forge/oauth/token')
+            .then((response) => {
+                console.log('app token', response.data.dictionary);
+                setToken(response.data.dictionary);
+            })
+            .catch((err) => console.log(err));
+    }, []);
+
+    useEffect(() => {
+        if (bucketObject) {
+            setUrn(null);
+            let axiosConfig = {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    'Access-Control-Allow-Origin': '*',
+                },
+            };
+
+            axios({
+                url: 'http://localhost:5000/api/forge/modelderivative/jobs',
+                method: 'post',
+                data: bucketObject,
+                headers: axiosConfig,
+            })
+                .then((response) => {
+                    console.log('bucketObject', response.data.dictionary.urn);
+                    setUrn(response.data.dictionary.urn);
+                    setResetViewer()
+                })
+                .catch((err) => console.log(err));
+        }
+    }, [bucketObject]);
 
     return (
         <Layout className="layout">
@@ -21,25 +58,23 @@ export default function Home() {
                 style={{ backgroundImage: 'linear-gradient(to right,  #EB344A , #F45943)' }}
             >
                 <Row>
-                    <Col xs={18} sm={16} md={14} lg={10}>
+                    <Col xs={20} sm={18} md={16} lg={10}>
                         <Space>
                             <Tag color="#355D7F">FILES: </Tag>
-                            <AppTreeView changeObject={setValue} />
+                            <AppTreeView changeObject={setBucketObject} />
                         </Space>
                     </Col>
-                    <Col xs={6} sm={6} md={8} lg={2}>
+                    <Col xs={4} sm={6} md={8} lg={2}>
                         <Button type="primary" size="large">
                             Function
                         </Button>
                     </Col>
                 </Row>
             </Header>
-            <Content
-                style={{
-                    padding: '0 50px',
-                }}
-            >
-                <div className="site-layout-content">{value}</div>
+            <Content>
+                <div className="site-layout-content">
+                    {token && urn ? <AppViewer token={token.access_token} urn={urn} /> : ''}
+                </div>
             </Content>
             <Footer
                 style={{

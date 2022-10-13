@@ -3,22 +3,15 @@
 @import 'antd/dist/antd.css';
 
 :root {
-
 }
 
 html {
-
 }
 
 body {
-    font-family: "Inter+Tight", sans-serif;
+    font-family: 'Inter+Tight', sans-serif;
     font-size: 1.6rem;
     box-sizing: border-box;
-}
-
-.site-layout-content {
-    padding: 24px;
-    background: #fff;
 }
 
 #components-layout-demo-top .logo {
@@ -32,4 +25,19 @@ body {
 .ant-row-rtl #components-layout-demo-top .logo {
     float: right;
     margin: 16px 0 16px 24px;
+}
+
+.site-layout-content {
+    width: 100%;
+    min-height: 450px;
+}
+
+#forgeViewer {
+    position: relative;
+    background-color: #d9edf7;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px rgb(241, 89, 0) solid;
+    width: 100%;
+    height: calc(100vh - 64px);
 }

@@ -58,9 +58,9 @@ export default function AppTreeView({ changeObject }) {
         if (item.isLeaf) {
             console.log(item)
             setValue(newValue);
-            changeObject(newValue)
+            changeObject({bucketKey: item.pId, objectName: newValue})
         } else {
-            setValue(null);
+            setValue(value);
         }
     };
 
@@ -69,6 +69,7 @@ export default function AppTreeView({ changeObject }) {
             treeDataSimpleMode
             style={{
                 width: '200%',
+                maxWidth: '300px'
             }}
             value={value}
             dropdownStyle={{
