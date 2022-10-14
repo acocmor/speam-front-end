@@ -15,7 +15,7 @@ export default function Home() {
     const [bucketObject, setBucketObject] = useState({});
     const [token, setToken] = useState(null);
     const [urn, setUrn] = useState(null);
-    const [resetViewer, setResetViewer] = useState(null);
+    const [pathExternalExtensions, setPathExternalExtensions] = useState(['./js/Measure.min.css']);
 
     useEffect(() => {
         api.get('forge/oauth/token')
@@ -45,11 +45,16 @@ export default function Home() {
                 .then((response) => {
                     console.log('bucketObject', response.data.dictionary.urn);
                     setUrn(response.data.dictionary.urn);
-                    setResetViewer()
                 })
                 .catch((err) => console.log(err));
+        } else {
+            console.log('------------------------------------');
         }
     }, [bucketObject]);
+
+    const onClickButton = (e) => {
+
+    };
 
     return (
         <Layout className="layout">
@@ -65,7 +70,7 @@ export default function Home() {
                         </Space>
                     </Col>
                     <Col xs={4} sm={6} md={8} lg={2}>
-                        <Button type="primary" size="large">
+                        <Button type="primary" size="large" onClick={onClickButton}>
                             Function
                         </Button>
                     </Col>
@@ -73,7 +78,7 @@ export default function Home() {
             </Header>
             <Content>
                 <div className="site-layout-content">
-                    {token && urn ? <AppViewer token={token.access_token} urn={urn} /> : ''}
+                    {token && urn ? <AppViewer token={token.access_token} urn={urn} pathExternalExtensions={pathExternalExtensions}/> : ''}
                 </div>
             </Content>
             <Footer

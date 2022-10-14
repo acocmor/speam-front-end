@@ -19,6 +19,7 @@
 let viewer;
 
 function launchViewer(urn) {
+  console.log('token', getForgeToken)
   let options = {
     env: 'AutodeskProduction',
     getAccessToken: getForgeToken

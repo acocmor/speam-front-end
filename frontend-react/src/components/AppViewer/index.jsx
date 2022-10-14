@@ -1,26 +1,66 @@
-import React, { useState } from 'react';
-import { ForgeViewer } from '@contecht/react-adsk-forge-viewer';
-import classNames from 'classnames/bind';
+/* eslint-disable no-undef */
+import load from 'load-script';
+import React, { useEffect, useState } from 'react';
 
-import styles from './AppViewer.module.scss';
-import DeleteElementExtension from '~/extensions/ForgeViewer/DeleteElementExtension/DeleteElementExtension';
+function AppViewer({ urn, token, pathExternalExtensions }) {
+    const [appViewer, setAppViewer] = useState(null);
 
-const cx = classNames.bind(styles);
+    useEffect(() => {
+        initializeViewer(urn, token);
 
-export default function AppViewer({token, urn}) {
-    const [externalExtensions, setExternalExtensions] = useState([]);
+        return () => {
+            if (appViewer) {
+                appViewer.finish();
+                setAppViewer(null);
+                console.log('destroy app viewer');
+            }
+            Autodesk.Viewing.shutdown();
+        };
+    }, []);
 
-    const onDocumentLoadSuccess = (viewerDocument) => {
-        const viewables = viewerDocument.getRoot().search({'type':'geometry'});
-	    return viewables.find(v => v.is2D());
-    }
+    const initializeViewer = async (urn, token) => {
+        const viewerOptions = {
+            env: 'AutodeskProduction',
+            getAccessToken: function (onTokenReady) {
+                var timeInSeconds = 3600; // Use value provided by Forge Authentication (OAuth) API
+                onTokenReady(token, timeInSeconds);
+            },
+            api: 'derivativeV2',
+        };
+        var viewerContainer = document.getElementById('forgeViewer');
+        var viewer = new Autodesk.Viewing.Private.GuiViewer3D(viewerContainer, {});
 
-    return (
-        <ForgeViewer 
-            token={token}
-            urn={urn} 
-            onDocumentLoadSuccess={onDocumentLoadSuccess}
-            extensions={[DeleteElementExtension]}
-            />
-    );
+        Autodesk.Viewing.Initializer(viewerOptions, () => {
+            const startedCode = viewer.start(undefined, undefined, undefined, undefined, viewerOptions);
+            if (startedCode > 0) {
+                console.error('Failed to create a Viewer: WebGL not supported.');
+                return;
+            } else {
+                console.log('load extensions');
+                (pathExternalExtensions || []).map((path) => {
+                    load(path, (err, script) => {
+                        if (err) {
+                            console.log('err load measure');
+                        } else {
+                            console.log('load script ok', script.src);
+                        }
+                    });
+                });
+
+                var tool = viewer.getExtension('Autodesk.Measure');
+                console.log('MeasureExtension: ', tool);
+
+                setAppViewer(viewer);
+            }
+
+            Autodesk.Viewing.Document.load(`urn:${urn}`, (doc) => {
+                var defaultModel = doc.getRoot().getDefaultGeometry();
+                viewer.loadDocumentNode(doc, defaultModel);
+            });
+        });
+    };
+
+    return <div id="forgeViewer"></div>;
 }
+
+export default AppViewer;
