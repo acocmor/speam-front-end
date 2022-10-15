@@ -1,0 +1,14 @@
+{
+    "login": "Einloggen",
+    "email": "E-mail",
+    "password": "Passwort",
+    "login": "Einloggen",
+    "register": "Registrieren",
+    "not_registered": "Noch nicht registriert?",
+    "create_account": "Ein Konto erstellen ?",
+    "remember_me": "Erinnere dich an mich",
+    "forgot_password": "Passwort vergessen ?",
+    "not_valid_email_message": "Die Eingabe ist keine gültige E-Mail!",
+    "input_your_email_message": "Bitte geben Sie Ihre E-Mail ein!",
+    "input_your_password_message": "Bitte geben Sie Ihr Passwort ein!"
+}

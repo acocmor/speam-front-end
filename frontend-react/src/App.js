@@ -10,7 +10,6 @@ function App() {
                 <Routes>
                     {publicRoutes.map((route, index) => {
                         const Page = route.component;
-
                         let Layout = DefaultLayout;
 
                         if (route.layout === null) {
@@ -19,7 +18,17 @@ function App() {
                             Layout = route.layout;
                         }
 
-                        return <Route key={index} path={route.path} element={<Layout><Page /></Layout>} />;
+                        return (
+                            <Route
+                                key={index}
+                                path={route.path}
+                                element={
+                                    <Layout>
+                                        <Page />
+                                    </Layout>
+                                }
+                            />
+                        );
                     })}
                 </Routes>
             </div>

@@ -7,6 +7,7 @@ import AppTreeView from '~/components/AppTreeView';
 import AppViewer from '~/components/AppViewer';
 import api from '~/api';
 import axios from 'axios';
+import ChangeLanguage from '~/components/ChangeLanguage';
 
 const cx = classNames.bind(styles);
 const { Header, Content, Footer } = Layout;
@@ -15,7 +16,7 @@ export default function Home() {
     const [bucketObject, setBucketObject] = useState({});
     const [token, setToken] = useState(null);
     const [urn, setUrn] = useState(null);
-    const [pathExternalExtensions, setPathExternalExtensions] = useState(['./js/Measure.min.css']);
+    const [pathExternalExtensions, setPathExternalExtensions] = useState(['./assets/js/Measure.min.css']);
 
     useEffect(() => {
         api.get('forge/oauth/token')
@@ -70,9 +71,10 @@ export default function Home() {
                         </Space>
                     </Col>
                     <Col xs={4} sm={6} md={8} lg={2}>
-                        <Button type="primary" size="large" onClick={onClickButton}>
+                        <ChangeLanguage />
+                        {/* <Button type="primary" size="large" onClick={onClickButton}>
                             Function
-                        </Button>
+                        </Button> */}
                     </Col>
                 </Row>
             </Header>

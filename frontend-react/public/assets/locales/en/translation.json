@@ -1,0 +1,14 @@
+{
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "login": "Login",
+    "register": "Register",
+    "not_registered": "Not registered yet?",
+    "create_account": "Create an account ?",
+    "remember_me": "Remember me",
+    "forgot_password": "Forgot Password ?",
+    "not_valid_email_message": "The input is not valid E-mail!",
+    "input_your_email_message": "Please input your email!",
+    "input_your_password_message": "Please input your password!"
+}

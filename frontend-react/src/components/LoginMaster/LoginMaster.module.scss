@@ -1,0 +1,187 @@
+@import 'src/styles/mixins.scss';
+
+.login-master {
+    background-color: var(--bodybg);
+    height: 100vh;
+    position: relative;
+
+    .login-master-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--white);
+        width: 100%;
+        max-width: 1200px;
+        margin: auto;
+        font-weight: 500;
+        color: black;
+    }
+}
+
+.form-container {
+    padding: 54px 136px 54px 136px;
+    @include responsive_425 {
+        padding: 32px 74px;
+    }
+
+    @include responsive_768 {
+        padding: 36px 96px;
+    }
+
+    @include responsive_992 {
+        padding: 36px 74px;
+    }
+
+    @include responsive_1024 {
+        padding: 36px 96px;
+    }
+}
+
+.login-master_logo {
+    display: flex;
+    height: 100%;
+    text-align: center;
+    background: var(--slider-bg);
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    .logo-title {
+        width: 60%;
+        margin: 0 auto;
+        h2 {
+            width: 100%;
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        p {
+            width: 100%;
+            font-size: 16px;
+            line-height: 22px;
+            font-weight: 300;
+        }
+    }
+}
+
+.login-master_flash-logo svg {
+    width: 40px;
+    height: 40px;
+    fill: var(--primary-color);
+    margin-bottom: -15px;
+}
+
+.title-form {
+    font-weight: 700;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.float-right {
+    float: right;
+}
+
+.text-underline {
+    color: var(--primary-color);
+    font-weight: 700;
+
+    a {
+        color: var(--primary-color);
+        &:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+    }
+}
+
+.login-form-custom {
+    input {
+        border-radius: 25px;
+        padding: 13px 20px;
+        border: 1px solid var(--grey);
+        font-family: 'Raleway', sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--text);
+        transition: linear 0.2s;
+
+        &:hover,
+        &:active,
+        &:focus {
+            border: 1px solid var(--grey);
+            border-color: var(--dark-grey);
+        }
+    }
+
+    .btn-login-custom {
+        display: flex;
+        width: 100%;
+        text-decoration: none;
+        border-radius: 50px;
+        padding: 13px 20px;
+        box-sizing: border-box;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 500;
+        align-items: center;
+        transition: linear 0.2s;
+        color: var(--white);
+        text-decoration: none;
+        border: 1px solid var(--primary-color);
+        margin-bottom: 25px;
+        background: var(--primary-color);
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            border-color: var(--login-cta-hover);
+            background: var(--login-cta-hover);
+        }
+    }
+
+    .form-item-custom {
+        display: flex;
+    }
+
+    .checkbox-custom {
+        span {
+            input {
+                &:checked {
+                    border: 2px solid var(--primary-color);
+                    background: var(--primary-color);
+
+                    &:before {
+                        width: 8px;
+                        top: 11px;
+                        left: 2px;
+                        transform: rotate(44deg);
+                    }
+
+                    &:after {
+                        width: 14px;
+                        top: 8px;
+                        left: 5px;
+                        transform: rotate(-55deg);
+                    }
+
+                    &:after,
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        height: 2px;
+                        background: var(--white);
+                    }
+                }
+
+                &:focus {
+                    outline: none;
+                    outline-offset: 0;
+                }
+
+               
+            }
+        }
+    }
+}
