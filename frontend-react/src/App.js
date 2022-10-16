@@ -1,10 +1,14 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { privateRoutes, publicRoutes } from './routes';
 import DefaultLayout from './components/Layout/DefaultLayout/index';
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import SecurityLayout from '~/components/Layout/SecurityLayout';
 
 function App() {
+    useEffect(() => {
+        document.title = 'Speam';
+    }, []);
+
     return (
         <Router>
             <div className="App">

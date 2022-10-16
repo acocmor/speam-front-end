@@ -1,0 +1,40 @@
+.user-dropdown {
+    margin-left: 30px;
+    color: var(--text-grey);
+    font-weight: 500;
+
+    &:hover {
+        color: var(--primary-color);
+    }
+
+    &-name {
+        font-size: 1.2rem;
+        padding: 0 5px;
+    }
+}
+
+.menu-item {
+    min-width: 160px;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 12px 18px;
+
+    &:hover {
+        background-color: var(--slider-bg);
+    }
+
+    &__path {
+        display: inline-block;
+        color: black;
+        width: 100%;
+        &:hover {
+            color: black;
+        }
+    }
+}
+
+.menu-custom {
+    li {
+        padding: 0;
+    }
+}

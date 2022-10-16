@@ -1,0 +1,11 @@
+.footer-container {
+    min-height: 60px;
+    position: relative;
+    font-size: 1rem;
+
+    &__content {
+        color: var(--text-grey);
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
