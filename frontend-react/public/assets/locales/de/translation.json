@@ -1,14 +1,23 @@
 {
+    "404_message": "Entschuldigung, die von Ihnen besuchte Seite existiert nicht!",
+    "back_home": "Zurück Zuhause",
     "login": "Einloggen",
     "email": "E-mail",
     "password": "Passwort",
+    "confirm_password": "Passwort bestätigen",
     "login": "Einloggen",
     "register": "Registrieren",
+    "name": "Name",
+    "full_name": "Vollständiger name",
     "not_registered": "Noch nicht registriert?",
     "create_account": "Ein Konto erstellen ?",
     "remember_me": "Erinnere dich an mich",
     "forgot_password": "Passwort vergessen ?",
+    "input_your_name_message": "Bitte geben Sie Ihren vollständigen Namen ein!",
     "not_valid_email_message": "Die Eingabe ist keine gültige E-Mail!",
     "input_your_email_message": "Bitte geben Sie Ihre E-Mail ein!",
-    "input_your_password_message": "Bitte geben Sie Ihr Passwort ein!"
+    "input_your_password_message": "Bitte geben Sie Ihr Passwort ein!",
+    "confirm_password_message": "Bitte bestätigen Sie Ihr Passwort",
+    "password_do_not_match_message": "Die beiden eingegebenen Passwörter stimmen nicht überein!",
+    "already_have_an_account": "Sie haben bereits ein Konto?"
 }

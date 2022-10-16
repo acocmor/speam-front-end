@@ -1,62 +1,71 @@
-import { Button, Checkbox, Col, Form, Input, Row } from 'antd';
-import React from 'react';
+import { Button, Form, Input } from 'antd';
+import React, { useEffect } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './LoginMaster.module.scss';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const cx = classNames.bind(styles);
 
-export default function RegisterComponent() {
+export default function RegisterComponent({ submitForm, submitFailed }) {
+    const { t } = useTranslation();
+
     const onFinish = (values) => {
-        console.log('Success:', values);
+        submitForm(values);
     };
     const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
+        submitFailed(errorInfo);
     };
+
+    const confirmPassword = ({ getFieldValue }) => ({
+        validator(rule, value) {
+            if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+            }
+            return Promise.reject(t('password_do_not_match_message'));
+        },
+    });
 
     return (
         <div>
             <div className={cx('title-form')}>
-                <span>Register</span>
+                <span>{t('register')}</span>
             </div>
             <div>
                 <Form
                     className={cx('login-form-custom')}
                     layout="vertical"
                     name="basic"
-                    initialValues={{
-                        remember: true,
-                    }}
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
                     autoComplete="off"
                 >
                     <Form.Item
                         autoComplete="none"
-                        label="Name"
+                        label={t('name')}
                         name="name"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input your full name!',
+                                message: t('input_your_name_message'),
                             },
                         ]}
                     >
-                        <Input className={cx('input-custom')} placeholder="email@website.com" />
+                        <Input className={cx('input-custom')} placeholder={t('full_name')} />
                     </Form.Item>
                     <Form.Item
                         autoComplete="none"
-                        label="Email"
+                        label={t('email')}
                         name="email"
                         rules={[
                             {
                                 type: 'email',
-                                message: 'The input is not valid E-mail!',
+                                message: t('not_valid_email_message'),
                             },
                             {
                                 required: true,
-                                message: 'Please input your email!',
+                                message: t('input_your_email_message'),
                             },
                         ]}
                     >
@@ -65,58 +74,51 @@ export default function RegisterComponent() {
 
                     <Form.Item
                         autoComplete="none"
-                        label="Password"
+                        label={t('password')}
                         name="password"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input your password!',
+                                message: t('input_your_password_message'),
                             },
                         ]}
                     >
-                        <Input type="password" className={cx('input-custom')} placeholder="Password" />
+                        <Input type="password" className={cx('input-custom')} placeholder={t('password')} />
                     </Form.Item>
 
                     <Form.Item
                         autoComplete="none"
-                        label="Confirm Password"
+                        label={t('confirm_password')}
                         name="confirmPassword"
                         dependencies={['password']}
                         rules={[
                             {
                                 required: true,
-                                message: 'Please confirm your password!',
+                                message: t('confirm_password_message'),
                             },
-                            ({ getFieldValue }) => ({
-                                validator(rule, value) {
-                                    if (!value || getFieldValue('password') === value) {
-                                        return Promise.resolve();
-                                    }
-                                    return Promise.reject('The two passwords that you entered do not match!');
-                                },
-                            }),
+                            confirmPassword,
                         ]}
                     >
-                        <Input
-                            type="password"
-                            className={cx('input-custom')}
-                            placeholder="Confirm Password"
-                        />
-
+                        <Input type="password" className={cx('input-custom')} placeholder={t('confirm_password')} />
                     </Form.Item>
 
                     <Form.Item>
-                        <Button className={cx('btn-login-custom')} type="primary" size="large" htmlType="submit">
-                            Register
+                        <Button
+                            className="btn-custom btn-custom_full-width"
+                            type="primary"
+                            size="large"
+                            htmlType="submit"
+                        >
+                            {t('register')}
                         </Button>
                     </Form.Item>
 
                     <Form.Item>
                         <p>
-                            <span className={cx('text-question')}>Already have an account? </span>
+                            <span className={cx('text-question')}>{t('already_have_an_account')} </span>
                             <span className={cx('text-underline')}>
                                 <Link to="/login" className={cx('text-underline_color')}>
-                                    Login
+                                    {t('login')}
                                 </Link>
                             </span>
                         </p>

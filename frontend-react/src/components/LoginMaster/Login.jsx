@@ -62,7 +62,7 @@ const CustomCheckBox = styled(Checkbox)`
     }
 `;
 
-export default function LoginComponent() {
+export default function LoginComponent({ submitForm, submitFailed }) {
     const [form] = Form.useForm();
 
     const { t } = useTranslation();
@@ -81,16 +81,10 @@ export default function LoginComponent() {
     }, []);
 
     const onFinish = (values) => {
-        console.log('Success:', values);
-        // TODO: post api login
-        if (values.remember) {
-            cookies.set('account', JSON.stringify(values));
-        } else {
-            cookies.remove('account');
-        }
+        submitForm(values)
     };
     const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
+        submitFailed(errorInfo)
     };
 
     return (
@@ -152,7 +146,7 @@ export default function LoginComponent() {
                     </Row>
 
                     <Form.Item>
-                        <Button className={cx('btn-login-custom')} type="primary" size="large" htmlType="submit">
+                        <Button className='btn-custom btn-custom_full-width' type="primary" size="large" htmlType="submit">
                             {t('login')}
                         </Button>
                     </Form.Item>

@@ -1,14 +1,23 @@
 {
+    "404_message": "Sorry, the page you visited does not exist!",
+    "back_home": "Back Home",
     "login": "Login",
     "email": "Email",
     "password": "Password",
+    "confirm_password": "Confirm Password",
     "login": "Login",
     "register": "Register",
+    "name": "Name",
+    "full_name": "Full name",
     "not_registered": "Not registered yet?",
     "create_account": "Create an account ?",
     "remember_me": "Remember me",
     "forgot_password": "Forgot Password ?",
+    "input_your_name_message": "Please input your full name!",
     "not_valid_email_message": "The input is not valid E-mail!",
     "input_your_email_message": "Please input your email!",
-    "input_your_password_message": "Please input your password!"
+    "input_your_password_message": "Please input your password!",
+    "confirm_password_message": "Please confirm your password!",
+    "password_do_not_match_message": "The two passwords that you entered do not match!",
+    "already_have_an_account": "Already have an account?"
 }
