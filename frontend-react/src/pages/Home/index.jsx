@@ -8,6 +8,8 @@ import AppViewer from '~/components/AppViewer';
 import api from '~/api';
 import axios from 'axios';
 import ChangeLanguage from '~/components/ChangeLanguage';
+import Sidebar from '~/components/Sidebar';
+import ListFile from '~/components/ListFile';
 
 const cx = classNames.bind(styles);
 const { Header, Content, Footer } = Layout;
@@ -53,43 +55,18 @@ export default function Home() {
         }
     }, [bucketObject]);
 
-    const onClickButton = (e) => {
-
-    };
+    const onClickButton = (e) => {};
 
     return (
-        <Layout className="layout">
-            <Header
-                className={cx('header')}
-                style={{ backgroundImage: 'linear-gradient(to right,  #EB344A , #F45943)' }}
-            >
-                <Row>
-                    <Col xs={20} sm={18} md={16} lg={10}>
-                        <Space>
-                            <Tag color="#355D7F">FILES: </Tag>
-                            <AppTreeView changeObject={setBucketObject} />
-                        </Space>
-                    </Col>
-                    <Col xs={4} sm={6} md={8} lg={2}>
-                        <ChangeLanguage />
-                        {/* <Button type="primary" size="large" onClick={onClickButton}>
-                            Function
-                        </Button> */}
-                    </Col>
-                </Row>
-            </Header>
-            <Content>
-                <div className="site-layout-content">
-                    {token && urn ? <AppViewer token={token.access_token} urn={urn} pathExternalExtensions={pathExternalExtensions}/> : ''}
-                </div>
-            </Content>
-            <Footer
-                style={{
-                    textAlign: 'center',
-                }}
-            >
-                SPEAM DEMO
-            </Footer>
-        </Layout>
+        <div className={cx('home-container')}>
+            <Row className={cx('home-container')}>
+                <Col xs={10} sm={8} md={8} lg={8} xl={6} xxl={4}>
+                    <Sidebar />
+                </Col>
+                <Col xs={14} sm={16} md={16} lg={16} xl={18} xxl={20}>
+                    <ListFile />
+                </Col>
+            </Row>
+        </div>
     );
 }

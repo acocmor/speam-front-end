@@ -1,0 +1,48 @@
+@import 'src/styles/mixins.scss';
+
+.sidebar-container {
+    font-size: 1.2rem;
+    padding: 24px 48px;
+    color: var(--text-grey);
+    border: 1px solid var(--grey);
+    height: 100%;
+
+    @include responsive_320() {
+        padding: 8px 22px;
+    }
+
+    @include responsive_425() {
+        padding: 14px 32px;
+    }
+
+    @include responsive_768() {
+        padding: 20px 40px;
+    }
+
+    .sidebar-item {
+        margin-bottom: 42px;
+        &__title {
+            padding: 8px 0;
+        }
+
+        &__button {
+            width: 100%;
+            margin-bottom: 3px;
+            cursor: pointer;
+            color: black;
+            font-size: 1rem;
+            padding: 5px 15px;
+            border-radius: 5px;
+
+
+            i {
+                color: var(--primary-color);
+            }
+            &-active,
+            &:hover {
+                background-color: var(--secondary-color);
+            }
+
+        }
+    }
+}
